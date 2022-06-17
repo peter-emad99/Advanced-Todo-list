@@ -1,0 +1,24 @@
+@use "sass:math";
+
+// Source: https://css-tricks.com/snippets/sass/px-to-em-functions/
+@function rem($pixels, $context: 16) {
+	@return (math.div($pixels, $context)) * 1rem;
+}
+
+@mixin list_header($pb: 12, $pi: 19, $fz: 20) {
+	background-color: var(--color-theme-300);
+	color: var(--color-white);
+	padding-block: rem($pb);
+	padding-inline: rem($pi);
+	font-size: rem($fz);
+}
+@mixin flex {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1em;
+	> :first-child {
+		flex-grow: 1;
+	}
+}
+$br: 6;

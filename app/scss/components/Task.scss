@@ -1,0 +1,37 @@
+@use "../util" as *;
+
+/* ---------------------------------- Tasks --------------------------------- */
+.tasks {
+	display: flex;
+	flex-direction: column;
+	gap: rem(10);
+	padding: rem(20);
+	background-color: var(--color-theme-200);
+	.task {
+		@include flex();
+
+		background-color: var(--color-white);
+		padding: rem(7) rem(12);
+		border-radius: rem($br);
+		box-shadow: var(--shadow-2);
+		h3 {
+			color: var(--color-theme-800);
+			font-size: rem(16);
+			font-weight: 700;
+			text-transform: capitalize;
+			padding-block: 0.2rem;
+		}
+		.remove_task_btn {
+			display: flex;
+			align-items: center;
+			&:hover {
+				svg {
+					fill: var(--color-theme-danger);
+				}
+			}
+			svg {
+				fill: var(--color-theme-300);
+			}
+		}
+	}
+}

@@ -1,0 +1,13 @@
+:root {
+	--color-theme-200: hsla(220, 78.2%, 61.4%, 1);
+	--color-theme-150: hsla(220, 78.2%, 49%, 1);
+	--color-theme-300: hsla(220, 75.4%, 39.8%, 1);
+	--color-theme-800: hsla(220, 100%, 18.6%, 1);
+	--color-theme-100: hsla(222, 100%, 89.8%, 1);
+	--color-white: hsla(0, 0%, 100%, 1);
+	--color-theme-danger: hsl(0, 100%, 69%);
+}
+:root {
+	--shadow-1: 2px 3px 4px hsla(220, 100%, 15.6%, 0.36);
+	--shadow-2: 3px 3px 4px var(--color-theme-300);
+}
