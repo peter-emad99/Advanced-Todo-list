@@ -28,46 +28,11 @@
 		<footer class="footer">
 			<p>Created by Peter Emad</p>
 		</footer>
-		<script>
-			function selectText(element) {
-				var sel, range;
-				var el = element; //get element id
-				if (window.getSelection && document.createRange) {
-					//Browser compatibility
-					sel = window.getSelection();
-					if (sel.toString() == "") {
-						//no text selection
-						window.setTimeout(function () {
-							range = document.createRange(); //range object
-							range.selectNodeContents(el); //sets Range
-							sel.removeAllRanges(); //remove all ranges from selection
-							sel.addRange(range); //add Range to a Selection.
-						}, 1);
-					}
-				}
-			}
-			function makeEditable(e) {
-				console.dir(e.target);
 
-				e.target.setAttribute("contenteditable", "true");
-				selectText(e.target);
-				e.target.focus();
-			}
-			function handleBlur(e) {
-				e.target.removeAttribute("contenteditable");
-				document.querySelector(".task h3").innerHTML = e.target.innerHTML;
-			}
-		</script>
 		<template class="listTemp">
 			<div class="list">
 				<div class="list__header">
-					<h2
-						class="list__title"
-						onclick="makeEditable(event)"
-						onblur="handleBlur(event)"
-					>
-						list 1
-					</h2>
+					<h2 class="list__title" contenteditable="true">New List</h2>
 				</div>
 				<div class="tasks"></div>
 				<div class="list__footer">
@@ -95,7 +60,7 @@
 		</template>
 		<template class="taskTemp">
 			<div class="task">
-				<h3 class="task__content"></h3>
+				<h3 class="task__content" contenteditable="true">New Card</h3>
 				<button
 					role="button"
 					title="Remove this card"

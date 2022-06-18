@@ -1,21 +1,11 @@
 @use "../util" as *;
 
 .lists_group {
-	// display: flex;
-	// flex-wrap: wrap;
-	// justify-content: center;
 	justify-items: center;
 	align-items: start;
 	display: grid;
-	// grid-template-columns: repeat(auto-fit, minmax(rem(307), max(1fr, 300px)));
 	grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
 	gap: 2rem;
-	// max-width: 1500px;
-
-	// margin-inline: auto;
-	// > * {
-	// 	flex: 1 1 rem(307);
-	// }
 }
 /* ---------------------------------- list ---------------------------------- */
 .list {
@@ -33,10 +23,22 @@
 		@include list_header();
 		@include flex();
 		border-bottom: 3px solid var(--color-white);
-		h2 {
+		.list__title {
 			font-size: inherit;
 			font-weight: 700;
-			padding-block: 0.2rem;
+			padding: 0.2rem;
+			text-transform: capitalize;
+			&:focus {
+				background-color: var(--color-white);
+				outline: 3px solid var(--color-white);
+				border-radius: 3px;
+				outline-offset: 2px;
+				color: var(--color-theme-800);
+				&::selection {
+					background-color: var(--color-theme-300);
+					color: var(--color-white);
+				}
+			}
 		}
 	}
 
@@ -56,15 +58,26 @@
 			&:hover {
 				background-color: rgb(225, 225, 225);
 			}
+			&:focus-visible {
+				outline: 3px solid var(--color-white);
+				outline-offset: 2px;
+			}
 		}
 		.remove_list_btn {
 			display: flex;
 			align-items: center;
-			&:hover {
+			&:hover,
+			&:focus {
 				svg {
 					fill: var(--color-theme-danger);
 				}
 			}
+			&:focus-visible {
+				outline: 3px solid var(--color-theme-danger);
+				outline-offset: 2px;
+				border-radius: 3px;
+			}
+
 			svg {
 				fill: var(--color-white);
 			}

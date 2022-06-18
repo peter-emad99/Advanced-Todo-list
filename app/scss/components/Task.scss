@@ -7,6 +7,10 @@
 	gap: rem(10);
 	padding: rem(20);
 	background-color: var(--color-theme-200);
+	&:empty {
+		padding: rem(0);
+		min-height: rem(40);
+	}
 	.task {
 		@include flex();
 
@@ -14,20 +18,37 @@
 		padding: rem(7) rem(12);
 		border-radius: rem($br);
 		box-shadow: var(--shadow-2);
-		h3 {
+		.task__content {
 			color: var(--color-theme-800);
 			font-size: rem(16);
 			font-weight: 700;
 			text-transform: capitalize;
-			padding-block: 0.2rem;
+			padding: 0.2rem;
+			&:focus {
+				background-color: var(--color-theme-300);
+				outline: 2px solid var(--color-theme-300);
+				border-radius: 3px;
+				outline-offset: 2px;
+				color: var(--color-white);
+				&::selection {
+					background-color: var(--color-white);
+					color: var(--color-theme-800);
+				}
+			}
 		}
 		.remove_task_btn {
 			display: flex;
 			align-items: center;
-			&:hover {
+			&:hover,
+			&:focus {
 				svg {
 					fill: var(--color-theme-danger);
 				}
+			}
+			&:focus-visible {
+				outline: 3px solid var(--color-theme-danger);
+				outline-offset: 2px;
+				border-radius: 3px;
 			}
 			svg {
 				fill: var(--color-theme-300);

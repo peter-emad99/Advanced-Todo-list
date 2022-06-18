@@ -1,7 +1,9 @@
+import { selectText } from "./Functions.js";
 import Item from "./Item.js";
 import Storage from "./Storage.js";
 
 export default class List {
+	/**@type {HTMLElement}  title*/
 	title;
 	listItems;
 	addItemBtn;
@@ -10,27 +12,54 @@ export default class List {
 		this.titleContent = title;
 		this.id = id;
 	}
-	addList() {
+	addListGeneral() {
 		const list = document.querySelector(".listTemp").content.cloneNode(true);
 		this.title = list.querySelector(".list__title");
+		this.title.textContent = this.titleContent;
+		this.title.addEventListener("blur", this.handleBlur.bind(this));
+		this.title.addEventListener("keypress", (e) => {
+			// console.log(e.key);
+			if (e.key === "Enter") {
+				e.currentTarget.blur();
+				window.getSelection().removeAllRanges();
+			}
+		});
 		this.listItems = list.querySelector(".tasks");
 		this.addItemBtn = list.querySelector(".add_task_btn");
-		this.removeListBtn = list.querySelector(".remove_list_btn");
-		this.title.textContent = this.titleContent;
 		this.addItemBtn.addEventListener("click", this.appendItem.bind(this));
+		this.removeListBtn = list.querySelector(".remove_list_btn");
 		this.removeListBtn.addEventListener("click", this.removeList.bind(this));
 		const listsGroup = document.querySelector(".lists_group");
 		listsGroup.appendChild(list);
 	}
-	appendItem(itemContent, itemId) {
+	addList() {
+		this.addListGeneral();
+		selectText(this.title);
+	}
+	addListFromStoarge() {
+		this.addListGeneral();
+	}
+	handleBlur(e) {
+		if (this.title.textContent !== this.titleContent) {
+			this.title.textContent = this.title.textContent.trim();
+			this.titleContent = this.title.textContent;
+			Storage.updateList(this.id, this.titleContent);
+		}
+	}
+	appendItem() {
+		let item = new Item();
+		let newItem = item.addItem();
+		this.listItems.appendChild(newItem);
+		Storage.setItem(this.id, item.itemTitleContent, item.id);
+		selectText(item.itemTitle);
+	}
+	appendItemFromStorage(itemContent, itemId) {
 		let item = new Item(itemContent, itemId);
 		let newItem = item.addItem();
 		this.listItems.appendChild(newItem);
-		Storage.setItem(this.id, item.itemContent, item.id);
 	}
 	removeList(e) {
 		let list = e.currentTarget.closest(".list");
-		// console.log(this.id);
 		Storage.removeList(this.id);
 		list.remove();
 	}

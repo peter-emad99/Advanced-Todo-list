@@ -1,24 +1,38 @@
-export default class Item {
-	item;
-	removeItemBtn;
-	itemContent = "new task";
-	id = Math.floor(Math.random() * 10000);
+import Storage from "./Storage.js";
 
+export default class Item {
+	itemTitle;
+	removeItemBtn;
 	constructor(content, id) {
-		this.itemContent = content;
-		this.id = id;
+		this.itemTitleContent = content ?? "New card";
+		this.id = id ?? Math.floor(Math.random() * 10000);
 	}
 	addItem() {
 		const newItem = document.querySelector(".taskTemp").content.cloneNode(true);
-		this.item = newItem.querySelector(".task__content");
-		this.item.innerHtml = this.itemContent;
+		this.itemTitle = newItem.querySelector(".task__content");
+		this.itemTitle.textContent = this.itemTitleContent;
+		this.itemTitle.addEventListener("blur", this.handleBlur.bind(this));
+		this.itemTitle.addEventListener("keypress", (e) => {
+			if (e.key === "Enter") {
+				e.currentTarget.blur();
+				window.getSelection().removeAllRanges();
+			}
+		});
 		this.removeItemBtn = newItem.querySelector(".remove_task_btn");
 		this.removeItemBtn.addEventListener("click", this.removeItem.bind(this));
-
 		return newItem;
 	}
 	removeItem(e) {
+		Storage.deleteItem(this.id);
 		e.currentTarget.parentElement.remove();
+	}
+	handleBlur(e) {
+		if (this.itemTitle.textContent !== this.itemTitleContent) {
+			this.itemTitle.textContent = this.itemTitle.textContent.trim();
+			this.itemTitleContent = this.itemTitle.textContent;
+
+			Storage.updateItem(this.id, this.itemTitleContent);
+		}
 	}
 }
 

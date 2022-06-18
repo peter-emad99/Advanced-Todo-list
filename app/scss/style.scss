@@ -40,6 +40,10 @@ body {
 [role="button"]:active {
 	transform: scale(0.95);
 }
+
+:where(.remove_list_btn, .remove_task_btn)[role="button"]:active {
+	transform: scale(0.85);
+}
 body,
 html {
 	overflow-x: hidden;
@@ -65,5 +69,9 @@ main {
 	box-shadow: var(--shadow-1);
 	&:hover {
 		background-color: var(--color-theme-150);
+	}
+	&:focus-visible {
+		outline: 3px solid var(--color-theme-300);
+		outline-offset: 2px;
 	}
 }

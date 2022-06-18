@@ -1,22 +1,20 @@
 export default class Storage {
-	/* ------------------------------ getListItems ------------------------------ */
-	static getListItems(listId) {
-		const lists = this.read("lists");
-		const list = lists.find((list) => list.id == listId);
-		if (!list) {
-			throw new Error("there is no list with this id");
-			return;
-		}
-		return list.items;
+	static addList(list) {
+		let listData = {
+			title: list.titleContent,
+			id: list.id,
+			items: [],
+		};
+		/**  @type {Array} lists*/
+		let lists = Storage.read("lists");
+		lists.push(listData);
+		Storage.save(lists);
 	}
 	/* ------------------------------- remove list ------------------------------ */
 	static removeList(listId) {
 		const lists = this.read("lists");
 		const list = lists.find((list) => list.id == listId);
 		if (list) {
-			console.log(listId);
-			console.log(list);
-			console.log(lists.indexOf(list));
 			lists.splice(lists.indexOf(list), 1);
 			this.save(lists);
 		} else {
@@ -24,12 +22,18 @@ export default class Storage {
 			return false;
 		}
 	}
-	/* -------------------------------- getItem -------------------------------- */
-	static getItem(listId, itemId) {
-		const items = this.getListItems(listId);
-		const item = items.find((item) => item.id == itemId);
-		return item;
+	static updateList(listId, newTitle) {
+		const lists = this.read("lists");
+		const list = lists.find((list) => list.id == listId);
+		if (list) {
+			list.title = newTitle;
+			this.save(lists);
+		} else {
+			throw new Error("there is no items to delete");
+			return false;
+		}
 	}
+
 	/* --------------------------------- setItem -------------------------------- */
 	static setItem(listId, itemContent, itemId) {
 		const lists = this.read("lists");
@@ -47,48 +51,42 @@ export default class Storage {
 		return true;
 	}
 	/* ------------------------------- updateItem ------------------------------- */
-	static updateItem(itemId, itemNewContent) {
+	static updateItem(itemId, newItemContent) {
 		const lists = this.read("lists");
+		let item;
+		lists.forEach((list) => {
+			item = list.items.find((item) => item.id == itemId);
 
-		const [item, currentList] = lists.forEach((list) => {
-			const item = list.items.find((item) => item.id == itemId);
-			return [item, list];
+			if (item) {
+				item.content = newItemContent;
+				this.save(lists);
+			}
 		});
 
-		if (!item) {
-			throw new Error("there is no items to update");
-			return false;
-		}
-
-		item.content = itemNewContent;
-		this.save(lists);
 		return true;
 	}
 	/* ------------------------------- deleteItem ------------------------------- */
 	static deleteItem(itemId) {
 		const lists = this.read("lists");
-
+		let item;
 		lists.forEach((list) => {
-			const item = list.items.find((item) => item.id == itemId);
+			item = list.items.find((item) => item.id == itemId);
+
 			if (item) {
-				console.log(item);
 				list.items.splice(list.items.indexOf(item), 1);
-			} else {
-				throw new Error("there is no items to delete");
-				return false;
+				this.save(lists);
 			}
 		});
 
-		this.save(lists);
 		return true;
 	}
 	/* ---------------------------------- Read --------------------------------- */
 	static read(key) {
 		let savedData = localStorage.getItem(key);
 		if (!savedData) {
-			throw new Error("no data to return");
-
-			return;
+			this.save([]);
+			savedData = localStorage.getItem(key);
+			return JSON.parse(savedData);
 		}
 		return JSON.parse(savedData);
 	}
@@ -97,7 +95,25 @@ export default class Storage {
 		let dataToSave = JSON.stringify(data);
 		localStorage.setItem("lists", dataToSave);
 	}
+	/* ---------------------------------- Remove All lists --------------------------------- */
 	static removeAllLists() {
+		this.save([]);
 		localStorage.removeItem("lists");
+	}
+	/* ------------------------------ getListItems ------------------------------ */
+	static getListItems(listId) {
+		const lists = this.read("lists");
+		const list = lists.find((list) => list.id == listId);
+		if (!list) {
+			throw new Error("there is no list with this id");
+			return;
+		}
+		return list.items;
+	}
+	/* -------------------------------- getItem -------------------------------- */
+	static getItem(listId, itemId) {
+		const items = this.getListItems(listId);
+		const item = items.find((item) => item.id == itemId);
+		return item;
 	}
 }
