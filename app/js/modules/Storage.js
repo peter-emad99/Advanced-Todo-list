@@ -84,7 +84,7 @@ export default class Storage {
 	static read(key) {
 		let savedData = localStorage.getItem(key);
 		if (!savedData) {
-			this.save([]);
+			this.save(defaultLists);
 			savedData = localStorage.getItem(key);
 			return JSON.parse(savedData);
 		}
@@ -117,3 +117,44 @@ export default class Storage {
 		return item;
 	}
 }
+
+let defaultLists = [
+	{
+		title: "to do",
+		id: 5167,
+		items: [
+			{
+				content: "task 1",
+				id: 4625,
+			},
+			{
+				content: "task 2",
+				id: 2672,
+			},
+		],
+	},
+	{
+		title: "doing",
+		id: 8797,
+		items: [
+			{
+				content: "task 1",
+				id: 6370,
+			},
+			{
+				content: "task 2",
+				id: 5115,
+			},
+		],
+	},
+	{
+		title: "done",
+		id: 7485,
+		items: [
+			{
+				content: "task 1",
+				id: 5578,
+			},
+		],
+	},
+];
