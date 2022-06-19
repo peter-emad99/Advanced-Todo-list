@@ -1,11 +1,43 @@
 :root {
-	--color-theme-100: hsla(222, 100%, 89.8%, 1);
-	--color-theme-150: hsla(220, 78.2%, 49%, 1);
-	--color-theme-200: hsla(220, 78.2%, 61.4%, 1);
-	--color-theme-300: hsla(220, 75.4%, 39.8%, 1);
-	--color-theme-800: hsla(220, 100%, 18.6%, 1);
+	--hue: 220;
+	--color-theme-100: hsla(var(--hue), 100%, 89.8%, 1);
+	--color-theme-150: hsla(var(--hue), 78.2%, 49%, 1);
+	--color-theme-200: hsla(var(--hue), 78.2%, 61.4%, 1);
+	--color-theme-300: hsla(var(--hue), 75.4%, 39.8%, 1);
+	--color-theme-800: hsla(var(--hue), 100%, 18.6%, 1);
 	--color-white: hsla(0, 0%, 100%, 1);
 	--color-theme-danger: hsl(0, 100%, 69%);
+}
+:root.green {
+	--hue: 140;
+	--color-theme-100: hsla(var(--hue), 100%, 89.8%, 1);
+	--color-theme-150: hsla(var(--hue), 78.2%, 49%, 1);
+	--color-theme-200: hsla(var(--hue), 78.2%, 61.4%, 1);
+	--color-theme-300: hsla(var(--hue), 75.4%, 39.8%, 1);
+	--color-theme-800: hsla(var(--hue), 100%, 18.6%, 1);
+	--color-white: hsla(0, 0%, 100%, 1);
+	--color-theme-danger: hsl(0, 100%, 69%);
+}
+:root.dark {
+	--hue: 100;
+	--color-theme-100: hsla(var(--hue), 0%, 85%, 1);
+	--color-theme-150: hsla(var(--hue), 0%, 49%, 1);
+	--color-theme-200: hsla(var(--hue), 0%, 45%, 1);
+	--color-theme-300: hsla(var(--hue), 0%, 15%, 1);
+	--color-theme-800: hsla(var(--hue), 0%, 18.6%, 1);
+	--color-white: hsla(0, 0%, 100%, 1);
+	--color-theme-danger: hsl(0, 100%, 69%);
+}
+:root.light {
+	--hue: 100;
+	--color-theme-100: hsla(var(--hue), 0%, 5%, 1);
+	--color-theme-150: hsla(var(--hue), 0%, 71%, 1);
+	--color-theme-200: hsla(var(--hue), 0%, 70%, 1);
+	--color-theme-300: hsla(var(--hue), 0%, 90%, 1);
+	--color-theme-800: hsla(var(--hue), 0%, 82.5%, 1);
+	--color-white: hsla(0, 0%, 0%, 1);
+	--color-theme-danger: hsl(0, 100%, 69%);
+	// --color-theme-44: hsl(0, 0%, 100%);
 }
 :root {
 	--shadow-1: 2px 3px 4px hsla(220, 100%, 15.6%, 0.36);

@@ -33,11 +33,15 @@ body {
 	flex-direction: column;
 }
 
-[role="button"] {
+[role="button"]:not(:disabled) {
 	cursor: pointer;
 	user-select: none;
 }
-[role="button"]:active {
+[role="button"]:disabled {
+	cursor: not-allowed;
+	user-select: none;
+}
+[role="button"]:not(:disabled):active {
 	transform: scale(0.95);
 }
 
@@ -60,17 +64,18 @@ main {
 	margin-bottom: 2rem;
 }
 .add_list_btn,
-.remove_all_lists_btn {
+.remove_all_lists_btn,
+.add_default_lists_btn {
 	@include list_header();
 	font-weight: 500;
 	max-width: 307px;
 	align-self: start;
 	border-radius: rem($br);
 	box-shadow: var(--shadow-1);
-	&:hover {
+	&:not(:disabled):hover {
 		background-color: var(--color-theme-150);
 	}
-	&:focus-visible {
+	&:not(:disabled):focus-visible {
 		outline: 3px solid var(--color-theme-300);
 		outline-offset: 2px;
 	}

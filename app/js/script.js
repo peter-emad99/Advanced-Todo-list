@@ -5,9 +5,8 @@ import List from "./modules/List.js";
 const addListBtn = document.querySelector(".add_list_btn");
 addListBtn.addEventListener("click", handleAddList);
 function handleAddList() {
-	let id = Math.floor(Math.random() * 10000);
-	let list = new List("New List", id);
-
+	// let id = Math.floor(Math.random() * 10000);
+	let list = new List();
 	Storage.addList(list);
 	list.addList();
 }
@@ -29,8 +28,15 @@ function removeAllLists() {
 		return;
 	}
 }
+/* ------------------------------- add default lists btn ------------------------------- */
+const addDefaultListsBtn = document.querySelector(".add_default_lists_btn");
+addDefaultListsBtn.addEventListener("click", addDefaultLists);
+function addDefaultLists(e) {
+	Storage.addDefaultLists();
+	updateUI();
+}
 /* -------------------------------- update UI ------------------------------- */
-(function () {
+function updateUI() {
 	let lists = Storage.read("lists");
 
 	lists.forEach(({ title, id, items }) => {
@@ -40,4 +46,5 @@ function removeAllLists() {
 			list.appendItemFromStorage(item.content, item.id);
 		});
 	});
-})();
+}
+updateUI();

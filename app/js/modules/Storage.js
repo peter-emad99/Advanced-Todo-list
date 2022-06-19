@@ -100,6 +100,9 @@ export default class Storage {
 		this.save([]);
 		// localStorage.removeItem("lists");
 	}
+	static addDefaultLists() {
+		this.save(defaultLists);
+	}
 	/* ------------------------------ getListItems ------------------------------ */
 	static getListItems(listId) {
 		const lists = this.read("lists");
@@ -121,39 +124,43 @@ export default class Storage {
 let defaultLists = [
 	{
 		title: "to do",
-		id: 5167,
+		id: Math.floor(Math.random() * 1000),
 		items: [
 			{
 				content: "task 1",
-				id: 4625,
+				id: Math.floor(Math.random() * 10000),
 			},
 			{
 				content: "task 2",
-				id: 2672,
+				id: Math.floor(Math.random() * 10000),
 			},
 		],
 	},
 	{
 		title: "doing",
-		id: 8797,
+		id: Math.floor(Math.random() * 1000),
 		items: [
 			{
 				content: "task 1",
-				id: 6370,
+				id: Math.floor(Math.random() * 10000),
 			},
 			{
 				content: "task 2",
-				id: 5115,
+				id: Math.floor(Math.random() * 10000),
 			},
 		],
 	},
 	{
 		title: "done",
-		id: 7485,
+		id: Math.floor(Math.random() * 1000),
 		items: [
 			{
 				content: "task 1",
-				id: 5578,
+				id: Math.floor(Math.random() * 10000),
+			},
+			{
+				content: "task 2",
+				id: Math.floor(Math.random() * 10000),
 			},
 		],
 	},

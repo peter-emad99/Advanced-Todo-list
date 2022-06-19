@@ -9,8 +9,8 @@ export default class List {
 	addItemBtn;
 	removeListBtn;
 	constructor(title, id) {
-		this.titleContent = title;
-		this.id = id;
+		this.titleContent = title ?? "New List";
+		this.id = id ?? Math.floor(Math.random() * 1000);
 	}
 	addListGeneral() {
 		const list = document.querySelector(".listTemp").content.cloneNode(true);
