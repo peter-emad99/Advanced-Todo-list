@@ -98,7 +98,7 @@ export default class Storage {
 	/* ---------------------------------- Remove All lists --------------------------------- */
 	static removeAllLists() {
 		this.save([]);
-		localStorage.removeItem("lists");
+		// localStorage.removeItem("lists");
 	}
 	/* ------------------------------ getListItems ------------------------------ */
 	static getListItems(listId) {
