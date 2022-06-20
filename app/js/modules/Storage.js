@@ -65,6 +65,32 @@ export default class Storage {
 
 		return true;
 	}
+	/* ------------------------------- updateItemPosition ------------------------------- */
+	static updateItemPosition(obj) {
+		let { newList: nl, oldList: ol, item: i, afterElement: iA } = obj;
+		console.log(obj);
+		const lists = this.read("lists");
+		const newList = lists.find((list) => list.id == nl.dataset.id);
+		const oldList = lists.find((list) => list.id == ol.dataset.id);
+
+		let item = oldList.items.find((item) => item.id == i.dataset.id);
+
+		if (item) {
+			oldList.items.splice(oldList.items.indexOf(item), 1);
+		}
+
+		if (iA != (undefined || null)) {
+			console.log(iA);
+			let itemAfter = newList.items.find((item) => item.id == iA.dataset.id);
+			console.log(newList.items.indexOf(itemAfter));
+			newList.items.splice(newList.items.indexOf(itemAfter), 0, item);
+		} else {
+			newList.items.push(item);
+		}
+		this.save(lists);
+		console.log("oldList", oldList);
+		console.log("newList", newList);
+	}
 	/* ------------------------------- deleteItem ------------------------------- */
 	static deleteItem(itemId) {
 		const lists = this.read("lists");

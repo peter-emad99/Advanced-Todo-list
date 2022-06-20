@@ -1,14 +1,22 @@
 import Storage from "./Storage.js";
+import { dragStart, drag, dragEnd } from "./Functions.js";
 
 export default class Item {
 	itemTitle;
 	removeItemBtn;
+	/**@type {HTMLElement} */
+	itemElement;
 	constructor(content, id) {
 		this.itemTitleContent = content ?? "New card";
 		this.id = id ?? Math.floor(Math.random() * 10000);
 	}
 	addItem() {
 		const newItem = document.querySelector(".taskTemp").content.cloneNode(true);
+		this.itemElement = newItem.querySelector(".task");
+		this.itemElement.dataset.id = this.id;
+		this.itemElement.addEventListener("dragstart", dragStart);
+		this.itemElement.addEventListener("drag", drag);
+		this.itemElement.addEventListener("dragend", dragEnd);
 		this.itemTitle = newItem.querySelector(".task__content");
 		this.itemTitle.textContent = this.itemTitleContent;
 		this.itemTitle.addEventListener("blur", this.handleBlur.bind(this));
