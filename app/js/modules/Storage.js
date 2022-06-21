@@ -68,7 +68,6 @@ export default class Storage {
 	/* ------------------------------- updateItemPosition ------------------------------- */
 	static updateItemPosition(obj) {
 		let { newList: nl, oldList: ol, item: i, afterElement: iA } = obj;
-		console.log(obj);
 		const lists = this.read("lists");
 		const newList = lists.find((list) => list.id == nl.dataset.id);
 		const oldList = lists.find((list) => list.id == ol.dataset.id);
@@ -80,16 +79,12 @@ export default class Storage {
 		}
 
 		if (iA != (undefined || null)) {
-			console.log(iA);
 			let itemAfter = newList.items.find((item) => item.id == iA.dataset.id);
-			console.log(newList.items.indexOf(itemAfter));
 			newList.items.splice(newList.items.indexOf(itemAfter), 0, item);
 		} else {
 			newList.items.push(item);
 		}
 		this.save(lists);
-		console.log("oldList", oldList);
-		console.log("newList", newList);
 	}
 	/* ------------------------------- deleteItem ------------------------------- */
 	static deleteItem(itemId) {

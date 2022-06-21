@@ -32,13 +32,22 @@ function dragStart(e) {
 	e.currentTarget.classList.add("dragging");
 	e.dataTransfer.setData("itemID", e.currentTarget.dataset.id);
 	e.dataTransfer.setData("listID", e.currentTarget.closest(".list").dataset.id);
+	e.dataTransfer.dropEffect = "move";
 }
 /* ---------------------------------- drag ---------------------------------- */
 /**@param {DragEvent} e */
-function drag(e) {}
+function drag(e) {
+	e.currentTarget.classList.add("ghost");
+}
 /* --------------------------------- dragEnd -------------------------------- */
 /**@param {DragEvent} e */
-function dragEnd(e) {}
+function dragEnd(e) {
+	document.querySelector(".ghost").classList.add("animateIn");
+	document.querySelector(".animateIn").addEventListener("animationend", () => {
+		this.classList.remove("animateIn");
+	});
+	document.querySelector(".dragging").classList.remove("dragging", "ghost");
+}
 /* --------------------------------- dragEnter -------------------------------- */
 /**@param {DragEvent} e */
 function dragEnter(e) {
@@ -59,15 +68,10 @@ function dragOver(e) {
 	}
 	if (afterElement == (null || undefined)) {
 		tasks.appendChild(draggable);
-		// afterElement = "lastElement"
 	} else {
-		// document.querySelector(`[data-after="true"]`).removeAttribute("data-after");
 		// afterElement.before(draggable);
-
 		tasks.insertBefore(draggable, afterElement);
 	}
-	// console.log(afterElement);
-	// e.dataTransfer.setData("itemAfterID", afterElement.dataset.id);
 }
 /* --------------------------------- dragLeave -------------------------------- */
 /**@param {DragEvent} e */
@@ -79,7 +83,7 @@ function drop(e) {
 	let oldList = document.querySelector(`[data-id="${e.dataTransfer.getData("listID")}"]`);
 	let item = document.querySelector(`[data-id="${e.dataTransfer.getData("itemID")}"]`);
 	Storage.updateItemPosition({ newList, oldList, item, afterElement });
-	document.querySelector(".dragging").classList.remove("dragging");
+	// document.querySelector(".dragging").classList.remove("dragging");
 }
 /* -------------- get the element that is after the currently dragged element ------------ */
 function getDragAfterElement(container, y) {

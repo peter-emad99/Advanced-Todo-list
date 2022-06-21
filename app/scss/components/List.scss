@@ -24,6 +24,7 @@
 		@include flex();
 		border-bottom: 3px solid var(--color-white);
 		.list__title {
+			flex-grow: 1;
 			font-size: inherit;
 			font-weight: 700;
 			padding: 0.2rem;
