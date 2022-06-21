@@ -1,6 +1,6 @@
 import Storage from "./modules/Storage.js";
 import List from "./modules/List.js";
-import Sortable from "../../node_modules/sortablejs/modular/sortable.esm.js";
+// import Sortable from "../../node_modules/sortablejs/modular/sortable.esm.js";
 // import Sortable from "sortablejs";
 /* ------------------------------- Add list btn ------------------------------- */
 const addListBtn = document.querySelector(".add_list_btn");
