@@ -80,3 +80,13 @@ main {
 		outline-offset: 2px;
 	}
 }
+
+.task.chosen {
+	background-color: hsl(0, 100%, 67%);
+}
+.task.ghost {
+	background-color: hsl(50, 100%, 67%);
+}
+.task.drag {
+	background-color: hsl(120, 100%, 67%);
+}

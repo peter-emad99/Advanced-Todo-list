@@ -14,11 +14,20 @@
 	.task {
 		@include flex();
 
+		& > * {
+			padding-block: rem(7);
+		}
 		background-color: var(--color-white);
-		padding: rem(7) rem(12);
 		border-radius: rem($br);
 		box-shadow: var(--shadow-2);
+		.handle {
+			padding-left: rem(12);
+			padding-right: rem(6);
+			color: var(--color-theme-800-05);
+		}
+
 		.task__content {
+			flex-grow: 1;
 			color: var(--color-theme-800);
 			font-size: rem(16);
 			font-weight: 700;
@@ -37,6 +46,7 @@
 			}
 		}
 		.remove_task_btn {
+			padding-inline: rem(12);
 			display: flex;
 			align-items: center;
 			&:hover,

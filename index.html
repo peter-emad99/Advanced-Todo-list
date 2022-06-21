@@ -13,6 +13,7 @@
 		<link rel="stylesheet" href="/dist/css/style.css" />
 		<script defer src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 		<script defer type="module" src="/dist/js/script.js"></script>
+		<script src="https://kit.fontawesome.com/10514c227f.js" crossorigin="anonymous"></script>
 	</head>
 	<body>
 		<header class="header">
@@ -62,6 +63,8 @@
 		</template>
 		<template class="taskTemp">
 			<div class="task">
+				<span class="handle"><i class="fa-solid fa-grip-vertical"></i></i></span>
+
 				<h3 class="task__content" contenteditable="true">New Card</h3>
 				<button
 					role="button"
