@@ -162,6 +162,12 @@ let defaultLists = [
 				content: "task 3",
 				id: Math.floor(Math.random() * 10000),
 			},
+		],
+	},
+	{
+		title: "doing",
+		id: Math.floor(Math.random() * 1000),
+		items: [
 			{
 				content: "task 4",
 				id: Math.floor(Math.random() * 10000),
@@ -174,6 +180,12 @@ let defaultLists = [
 				content: "task 6",
 				id: Math.floor(Math.random() * 10000),
 			},
+		],
+	},
+	{
+		title: "done",
+		id: Math.floor(Math.random() * 1000),
+		items: [
 			{
 				content: "task 7",
 				id: Math.floor(Math.random() * 10000),
@@ -192,32 +204,4 @@ let defaultLists = [
 			},
 		],
 	},
-	// {
-	// 	title: "doing",
-	// 	id: Math.floor(Math.random() * 1000),
-	// 	items: [
-	// 		{
-	// 			content: "task 1",
-	// 			id: Math.floor(Math.random() * 10000),
-	// 		},
-	// 		{
-	// 			content: "task 2",
-	// 			id: Math.floor(Math.random() * 10000),
-	// 		},
-	// 	],
-	// },
-	// {
-	// 	title: "done",
-	// 	id: Math.floor(Math.random() * 1000),
-	// 	items: [
-	// 		{
-	// 			content: "task 1",
-	// 			id: Math.floor(Math.random() * 10000),
-	// 		},
-	// 		{
-	// 			content: "task 2",
-	// 			id: Math.floor(Math.random() * 10000),
-	// 		},
-	// 	],
-	// },
 ];
