@@ -28,6 +28,9 @@ export default class Item {
 		this.itemTitle = newItem.querySelector(".task__content");
 		this.itemTitle.textContent = this.itemTitleContent;
 		this.itemTitle.addEventListener("blur", this.handleBlur.bind(this));
+		this.itemTitle.addEventListener("click", (e) => {
+			e.currentTarget.focus();
+		});
 		this.itemTitle.addEventListener("keypress", (e) => {
 			if (e.key === "Enter") {
 				e.currentTarget.blur();
