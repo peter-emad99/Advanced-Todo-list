@@ -12,13 +12,23 @@
 		min-height: rem(40);
 	}
 	.task {
-		@include flex();
+		// transition: all 500ms ease 100ms;
 
+		@include flex();
+		& > * {
+			padding-block: rem(7);
+		}
 		background-color: var(--color-white);
-		padding: rem(7) rem(12);
 		border-radius: rem($br);
 		box-shadow: var(--shadow-2);
+		.handle {
+			padding-left: rem(12);
+			padding-right: rem(6);
+			color: var(--color-theme-800-05);
+			cursor: grab;
+		}
 		.task__content {
+			flex-grow: 1;
 			color: var(--color-theme-800);
 			font-size: rem(16);
 			font-weight: 700;
@@ -37,6 +47,7 @@
 			}
 		}
 		.remove_task_btn {
+			padding-inline: rem(12);
 			display: flex;
 			align-items: center;
 			&:hover,
@@ -54,5 +65,60 @@
 				fill: var(--color-theme-300);
 			}
 		}
+	}
+}
+.task.chosen {
+	background-color: hsl(0, 100%, 67%);
+}
+.task.dragging:active {
+	background-color: hsl(120, 100%, 67%);
+	// background-image: none;
+}
+.task.ghost {
+	background-color: hsl(50, 100%, 67%);
+	opacity: 0.7;
+}
+// .dragging {
+// 	opacity: 0.5;
+// 	outline: 3px dashed var(--color-theme-300);
+// }
+.slide_up {
+	animation: slide-up 500ms ease 0s 1 normal none;
+	// animation-play-state: paused;
+}
+.slide_down {
+	animation: slide-down 500ms ease 0s 1 normal none;
+}
+.slide_in {
+	animation: slide-in 500ms ease 0s 1 normal none;
+}
+@keyframes slide-up {
+	0% {
+		transform: translate(0px, 10px);
+		opacity: 0.5;
+	}
+	100% {
+		transform: translate(0, 0);
+		opacity: 1;
+	}
+}
+@keyframes slide-down {
+	0% {
+		transform: translate(0px, 10px);
+		opacity: 0.5;
+	}
+	100% {
+		transform: translate(0, 0);
+		opacity: 1;
+	}
+}
+@keyframes slide-in {
+	0% {
+		transform: translate(20px, 0px);
+		opacity: 0.5;
+	}
+	100% {
+		transform: translate(0, 0);
+		opacity: 1;
 	}
 }

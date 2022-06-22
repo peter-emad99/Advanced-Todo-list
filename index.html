@@ -12,10 +12,12 @@
 		/>
 		<link rel="stylesheet" href="/dist/css/style.css" />
 		<script defer type="module" src="/dist/js/script.js"></script>
+		<script defer type="module" src="/dist/js/DragDropTouch.js"></script>
+		<script src="https://kit.fontawesome.com/10514c227f.js" crossorigin="anonymous"></script>
 	</head>
 	<body>
 		<header class="header">
-			<h1>Advanced Todo list</h1>
+			<h1>Kanban Board</h1>
 		</header>
 		<main>
 			<div class="btns">
@@ -33,6 +35,7 @@
 		<template class="listTemp">
 			<div class="list">
 				<div class="list__header">
+					
 					<h2 class="list__title" contenteditable="true">New List</h2>
 				</div>
 				<div class="tasks"></div>
@@ -60,7 +63,8 @@
 			</div>
 		</template>
 		<template class="taskTemp">
-			<div class="task">
+			<div class="task" draggable="true">
+								<span class="handle"><i class="fa-solid fa-grip-vertical"></i></i></span>
 				<h3 class="task__content" contenteditable="true">New Card</h3>
 				<button
 					role="button"

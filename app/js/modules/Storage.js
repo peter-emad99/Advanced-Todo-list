@@ -65,6 +65,27 @@ export default class Storage {
 
 		return true;
 	}
+	/* ------------------------------- updateItemPosition ------------------------------- */
+	static updateItemPosition(obj) {
+		let { newList: nl, oldList: ol, item: i, afterElement: iA } = obj;
+		const lists = this.read("lists");
+		const newList = lists.find((list) => list.id == nl.dataset.id);
+		const oldList = lists.find((list) => list.id == ol.dataset.id);
+
+		let item = oldList.items.find((item) => item.id == i.dataset.id);
+
+		if (item) {
+			oldList.items.splice(oldList.items.indexOf(item), 1);
+		}
+
+		if (iA != (undefined || null)) {
+			let itemAfter = newList.items.find((item) => item.id == iA.dataset.id);
+			newList.items.splice(newList.items.indexOf(itemAfter), 0, item);
+		} else {
+			newList.items.push(item);
+		}
+		this.save(lists);
+	}
 	/* ------------------------------- deleteItem ------------------------------- */
 	static deleteItem(itemId) {
 		const lists = this.read("lists");
@@ -101,7 +122,10 @@ export default class Storage {
 		// localStorage.removeItem("lists");
 	}
 	static addDefaultLists() {
-		this.save(defaultLists);
+		let lists = this.read("lists");
+		defaultLists.forEach((defaultlist) => lists.push(defaultlist));
+		this.save(lists);
+		return defaultLists;
 	}
 	/* ------------------------------ getListItems ------------------------------ */
 	static getListItems(listId) {
@@ -134,34 +158,66 @@ let defaultLists = [
 				content: "task 2",
 				id: Math.floor(Math.random() * 10000),
 			},
+			{
+				content: "task 3",
+				id: Math.floor(Math.random() * 10000),
+			},
+			{
+				content: "task 4",
+				id: Math.floor(Math.random() * 10000),
+			},
+			{
+				content: "task 5",
+				id: Math.floor(Math.random() * 10000),
+			},
+			{
+				content: "task 6",
+				id: Math.floor(Math.random() * 10000),
+			},
+			{
+				content: "task 7",
+				id: Math.floor(Math.random() * 10000),
+			},
+			{
+				content: "task 8",
+				id: Math.floor(Math.random() * 10000),
+			},
+			{
+				content: "task 9",
+				id: Math.floor(Math.random() * 10000),
+			},
+			{
+				content: "task 10",
+				id: Math.floor(Math.random() * 10000),
+			},
 		],
 	},
-	{
-		title: "doing",
-		id: Math.floor(Math.random() * 1000),
-		items: [
-			{
-				content: "task 1",
-				id: Math.floor(Math.random() * 10000),
-			},
-			{
-				content: "task 2",
-				id: Math.floor(Math.random() * 10000),
-			},
-		],
-	},
-	{
-		title: "done",
-		id: Math.floor(Math.random() * 1000),
-		items: [
-			{
-				content: "task 1",
-				id: Math.floor(Math.random() * 10000),
-			},
-			{
-				content: "task 2",
-				id: Math.floor(Math.random() * 10000),
-			},
-		],
-	},
+	// {
+	// 	title: "doing",
+	// 	id: Math.floor(Math.random() * 1000),
+	// 	items: [
+	// 		{
+	// 			content: "task 1",
+	// 			id: Math.floor(Math.random() * 10000),
+	// 		},
+	// 		{
+	// 			content: "task 2",
+	// 			id: Math.floor(Math.random() * 10000),
+	// 		},
+	// 	],
+	// },
+	// {
+	// 	title: "done",
+	// 	id: Math.floor(Math.random() * 1000),
+	// 	items: [
+	// 		{
+	// 			content: "task 1",
+	// 			id: Math.floor(Math.random() * 10000),
+	// 		},
+	// 		{
+	// 			content: "task 2",
+	// 			id: Math.floor(Math.random() * 10000),
+	// 		},
+	// 	],
+	// },
 ];

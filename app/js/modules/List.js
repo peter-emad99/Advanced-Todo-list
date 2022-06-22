@@ -1,10 +1,12 @@
-import { selectText } from "./Functions.js";
+import { selectText, dragLeave, dragOver, drop, dragEnter } from "./Functions.js";
 import Item from "./Item.js";
 import Storage from "./Storage.js";
 
 export default class List {
 	/**@type {HTMLElement}  title*/
 	title;
+	/**@type {HTMLElement}  title*/
+	listElement;
 	listItems;
 	addItemBtn;
 	removeListBtn;
@@ -14,6 +16,8 @@ export default class List {
 	}
 	addListGeneral() {
 		const list = document.querySelector(".listTemp").content.cloneNode(true);
+		this.listElement = list.querySelector(".list");
+		this.listElement.dataset.id = this.id;
 		this.title = list.querySelector(".list__title");
 		this.title.textContent = this.titleContent;
 		this.title.addEventListener("blur", this.handleBlur.bind(this));
@@ -25,6 +29,10 @@ export default class List {
 			}
 		});
 		this.listItems = list.querySelector(".tasks");
+		this.listItems.addEventListener("dragenter", dragEnter);
+		this.listItems.addEventListener("dragover", dragOver);
+		this.listItems.addEventListener("dragleave", dragLeave);
+		this.listItems.addEventListener("drop", drop);
 		this.addItemBtn = list.querySelector(".add_task_btn");
 		this.addItemBtn.addEventListener("click", this.appendItem.bind(this));
 		this.removeListBtn = list.querySelector(".remove_list_btn");

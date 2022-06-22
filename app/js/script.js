@@ -32,13 +32,16 @@ function removeAllLists() {
 const addDefaultListsBtn = document.querySelector(".add_default_lists_btn");
 addDefaultListsBtn.addEventListener("click", addDefaultLists);
 function addDefaultLists(e) {
-	Storage.addDefaultLists();
-	updateUI();
+	let lists = Storage.addDefaultLists();
+	addLists(lists);
 }
 /* -------------------------------- update UI ------------------------------- */
-function updateUI() {
+(function () {
 	let lists = Storage.read("lists");
+	addLists(lists);
+})();
 
+function addLists(lists) {
 	lists.forEach(({ title, id, items }) => {
 		let list = new List(title, id);
 		list.addListFromStoarge();
@@ -47,4 +50,3 @@ function updateUI() {
 		});
 	});
 }
-updateUI();
