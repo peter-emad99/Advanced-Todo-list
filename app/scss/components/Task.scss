@@ -12,6 +12,8 @@
 		min-height: rem(40);
 	}
 	.task {
+		// transition: all 500ms ease 100ms;
+
 		@include flex();
 		& > * {
 			padding-block: rem(7);
@@ -80,13 +82,40 @@
 // 	opacity: 0.5;
 // 	outline: 3px dashed var(--color-theme-300);
 // }
-.task.animateIn {
-	animation: slide-In 500ms ease 0s 1 normal none;
+.slide_up {
+	animation: slide-up 500ms ease 0s 1 normal none;
+	// animation-play-state: paused;
 }
-@keyframes slide-In {
+.slide_down {
+	animation: slide-down 500ms ease 0s 1 normal none;
+}
+.slide_in {
+	animation: slide-in 500ms ease 0s 1 normal none;
+}
+@keyframes slide-up {
 	0% {
 		transform: translate(0px, 10px);
-		opacity: 0;
+		opacity: 0.5;
+	}
+	100% {
+		transform: translate(0, 0);
+		opacity: 1;
+	}
+}
+@keyframes slide-down {
+	0% {
+		transform: translate(0px, 10px);
+		opacity: 0.5;
+	}
+	100% {
+		transform: translate(0, 0);
+		opacity: 1;
+	}
+}
+@keyframes slide-in {
+	0% {
+		transform: translate(20px, 0px);
+		opacity: 0.5;
 	}
 	100% {
 		transform: translate(0, 0);

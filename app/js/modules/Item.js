@@ -1,5 +1,12 @@
 import Storage from "./Storage.js";
-import { dragStart, drag, dragEnd } from "./Functions.js";
+import {
+	dragStart,
+	drag,
+	dragEnd,
+	dragLeaveItem,
+	dragOverItem,
+	dragEnterItem,
+} from "./Functions.js";
 
 export default class Item {
 	itemTitle;
@@ -17,6 +24,7 @@ export default class Item {
 		this.itemElement.addEventListener("dragstart", dragStart);
 		this.itemElement.addEventListener("drag", drag);
 		this.itemElement.addEventListener("dragend", dragEnd);
+
 		this.itemTitle = newItem.querySelector(".task__content");
 		this.itemTitle.textContent = this.itemTitleContent;
 		this.itemTitle.addEventListener("blur", this.handleBlur.bind(this));
