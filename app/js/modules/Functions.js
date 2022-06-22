@@ -14,8 +14,8 @@ export {
 import Storage from "./Storage.js";
 function selectText(element) {
 	document.activeElement.blur();
+	element.click();
 	element.focus();
-	window.r;
 	var sel, range;
 	var el = element; //get element id
 	if (window.getSelection && document.createRange) {
