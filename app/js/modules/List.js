@@ -44,6 +44,7 @@ export default class List {
 		this.addListGeneral();
 		selectText(this.title);
 		this.title.click();
+		this.title.focus();
 	}
 	addListFromStoarge() {
 		this.addListGeneral();
