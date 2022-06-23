@@ -43,6 +43,8 @@ export default class List {
 	addList() {
 		this.addListGeneral();
 		selectText(this.title);
+		this.title.click();
+		this.title.focus();
 	}
 	addListFromStoarge() {
 		this.addListGeneral();
@@ -60,7 +62,7 @@ export default class List {
 		this.listItems.appendChild(newItem);
 		Storage.setItem(this.id, item.itemTitleContent, item.id);
 		selectText(item.itemTitle);
-		item.click();
+		item.itemTitle.click();
 	}
 	appendItemFromStorage(itemContent, itemId) {
 		let item = new Item(itemContent, itemId);

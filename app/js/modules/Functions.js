@@ -15,7 +15,7 @@ import Storage from "./Storage.js";
 function selectText(element) {
 	document.activeElement.blur();
 
-	element.focus();
+	// element.focus();
 	var sel, range;
 	var el = element; //get element id
 	if (window.getSelection && document.createRange) {
@@ -32,6 +32,7 @@ function selectText(element) {
 			}, 1);
 		}
 	}
+	// element.focus();
 }
 
 /* -------------------------------- dragStart ------------------------------- */
