@@ -32,6 +32,7 @@ function selectText(element) {
 			}, 1);
 		}
 	}
+	element.focus();
 }
 
 /* -------------------------------- dragStart ------------------------------- */

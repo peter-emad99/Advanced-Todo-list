@@ -60,7 +60,6 @@ export default class List {
 		this.listItems.appendChild(newItem);
 		Storage.setItem(this.id, item.itemTitleContent, item.id);
 		selectText(item.itemTitle);
-		item.click();
 	}
 	appendItemFromStorage(itemContent, itemId) {
 		let item = new Item(itemContent, itemId);
