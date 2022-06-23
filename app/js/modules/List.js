@@ -59,7 +59,8 @@ export default class List {
 		let newItem = item.addItem();
 		this.listItems.appendChild(newItem);
 		Storage.setItem(this.id, item.itemTitleContent, item.id);
-		selectText(item.itemTitle);
+		// selectText(item.itemTitle);
+		item.itemTitle.click();
 	}
 	appendItemFromStorage(itemContent, itemId) {
 		let item = new Item(itemContent, itemId);
