@@ -63,6 +63,7 @@ export default class List {
 		Storage.setItem(this.id, item.itemTitleContent, item.id);
 		selectText(item.itemTitle);
 		item.itemTitle.click();
+		item.itemTitle.focus();
 	}
 	appendItemFromStorage(itemContent, itemId) {
 		let item = new Item(itemContent, itemId);
