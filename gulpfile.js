@@ -38,6 +38,7 @@ function browserSyncServe(cb) {
 				bottom: "0",
 			},
 		},
+		port: 5001,
 	});
 	cb();
 }

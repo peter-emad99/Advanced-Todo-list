@@ -1,3 +1,5 @@
+import { generateId } from "./Functions.js";
+
 export default class Storage {
 	static addList(list) {
 		let listData = {
@@ -148,59 +150,59 @@ export default class Storage {
 let defaultLists = [
 	{
 		title: "to do",
-		id: Math.floor(Math.random() * 1000),
+		id: generateId(),
 		items: [
 			{
 				content: "task 1",
-				id: Math.floor(Math.random() * 10000),
+				id: generateId(),
 			},
 			{
 				content: "task 2",
-				id: Math.floor(Math.random() * 10000),
+				id: generateId(),
 			},
 			{
 				content: "task 3",
-				id: Math.floor(Math.random() * 10000),
+				id: generateId(),
 			},
 		],
 	},
 	{
 		title: "doing",
-		id: Math.floor(Math.random() * 1000),
+		id: generateId(),
 		items: [
 			{
 				content: "task 4",
-				id: Math.floor(Math.random() * 10000),
+				id: generateId(),
 			},
 			{
 				content: "task 5",
-				id: Math.floor(Math.random() * 10000),
+				id: generateId(),
 			},
 			{
 				content: "task 6",
-				id: Math.floor(Math.random() * 10000),
+				id: generateId(),
 			},
 		],
 	},
 	{
 		title: "done",
-		id: Math.floor(Math.random() * 1000),
+		id: generateId(),
 		items: [
 			{
 				content: "task 7",
-				id: Math.floor(Math.random() * 10000),
+				id: generateId(),
 			},
 			{
 				content: "task 8",
-				id: Math.floor(Math.random() * 10000),
+				id: generateId(),
 			},
 			{
 				content: "task 9",
-				id: Math.floor(Math.random() * 10000),
+				id: generateId(),
 			},
 			{
 				content: "task 10",
-				id: Math.floor(Math.random() * 10000),
+				id: generateId(),
 			},
 		],
 	},

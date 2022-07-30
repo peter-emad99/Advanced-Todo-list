@@ -1,4 +1,4 @@
-import { selectText, dragLeave, dragOver, drop, dragEnter } from "./Functions.js";
+import { selectText, dragLeave, dragOver, drop, dragEnter, generateId } from "./Functions.js";
 import Item from "./Item.js";
 import Storage from "./Storage.js";
 
@@ -12,7 +12,7 @@ export default class List {
 	removeListBtn;
 	constructor(title, id) {
 		this.titleContent = title ?? "New List";
-		this.id = id ?? Math.floor(Math.random() * 1000);
+		this.id = id ?? generateId();
 	}
 	addListGeneral() {
 		const list = document.querySelector(".listTemp").content.cloneNode(true);

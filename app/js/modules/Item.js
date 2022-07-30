@@ -1,12 +1,5 @@
 import Storage from "./Storage.js";
-import {
-	dragStart,
-	drag,
-	dragEnd,
-	dragLeaveItem,
-	dragOverItem,
-	dragEnterItem,
-} from "./Functions.js";
+import { dragStart, drag, dragEnd, generateId } from "./Functions.js";
 
 export default class Item {
 	itemTitle;
@@ -15,7 +8,7 @@ export default class Item {
 	itemElement;
 	constructor(content, id) {
 		this.itemTitleContent = content ?? "New card";
-		this.id = id ?? Math.floor(Math.random() * 10000);
+		this.id = id ?? generateId();
 	}
 	addItem() {
 		const newItem = document.querySelector(".taskTemp").content.cloneNode(true);
